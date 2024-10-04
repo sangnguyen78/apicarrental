@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone_number',
         'password_reset_token',
         'auth_key',
         'email_verified_at',
@@ -50,4 +52,13 @@ class User extends Authenticatable
         'updated_at' => 'datetime',
         'password' => 'hashed',
     ];
+    /**
+     * Save the model to the database.
+     *
+     * @return bool
+     */
+    public function save(array $options = [])
+    {
+        return parent::save($options);
+    }
 }

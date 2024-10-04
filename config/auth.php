@@ -39,11 +39,11 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',  // This is consistent with your provider key
+            'provider' => 'users',
         ],
         'api' => [
             'driver' => 'token',
-            'provider' => 'users',  // Change 'user' to 'users'
+            'provider' => 'users',
             'hash' => false,
         ],
     ],

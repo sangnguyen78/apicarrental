@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 return [
     /*
@@ -308,6 +310,7 @@ return [
         Nuwave\Lighthouse\Schema\Directives\RenameArgsDirective::class,
         Nuwave\Lighthouse\Schema\Directives\DropArgsDirective::class,
     ],
+
 
     /*
     |--------------------------------------------------------------------------

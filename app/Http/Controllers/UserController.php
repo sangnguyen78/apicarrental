@@ -45,6 +45,7 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'phone_number' => '',
             'auth_key' => bin2hex(random_bytes(16)),
             'remember_token' => bin2hex(random_bytes(32)),
             'password_reset_token' => '', // Provide a default value
