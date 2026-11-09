@@ -171,8 +171,28 @@ database/               # Migrations và SQL scripts
 
 ## Đóng góp
 
-Nếu muốn đóng góp, hãy tạo branch riêng, mô tả thay đổi rõ ràng và mở pull request để xem xét.
+Các đóng góp giúp cải thiện dự án đều được hoan nghênh. Trước khi bắt đầu một thay đổi lớn, hãy mở issue để trao đổi về hướng triển khai và phạm vi công việc.
+
+1. Fork repository và tạo branch riêng từ `main`:
+
+   ```bash
+   git checkout -b feat/mo-ta-thay-doi
+   ```
+
+2. Thực hiện thay đổi theo đúng phạm vi, giữ mã nguồn nhất quán với cấu trúc hiện có và không đưa thông tin bí mật hoặc tệp `.env` vào commit.
+3. Chạy các kiểm thử phù hợp trước khi gửi:
+
+   ```bash
+   php artisan test
+   ```
+
+4. Commit với thông điệp ngắn gọn, mô tả đúng nội dung thay đổi, rồi push branch lên fork của bạn.
+5. Mở pull request vào nhánh `main`. Trong mô tả PR, nêu mục đích, những thay đổi chính, cách kiểm thử và ảnh minh họa nếu thay đổi có ảnh hưởng đến giao diện.
+
+Pull request sẽ được xem xét trước khi hợp nhất. Có thể đề nghị chỉnh sửa hoặc bổ sung kiểm thử để đảm bảo thay đổi phù hợp với dự án.
 
 ## Giấy phép
 
-Chưa xác định giấy phép riêng cho ứng dụng trong repository. Hãy bổ sung tệp `LICENSE` nếu muốn công bố điều khoản sử dụng.
+Hiện repository **chưa có tệp `LICENSE`**, vì vậy chưa có giấy phép mã nguồn mở nào được công bố cho toàn bộ dự án. Không nên mặc định rằng mã nguồn được phép sử dụng, chỉnh sửa hoặc phân phối lại theo một giấy phép cụ thể.
+
+Nếu bạn là chủ sở hữu dự án và muốn cấp quyền sử dụng mã nguồn, hãy chọn giấy phép phù hợp, thêm tệp `LICENSE` ở thư mục gốc và cập nhật mục này. Nếu chưa có sự cho phép rõ ràng, vui lòng liên hệ chủ sở hữu repository trước khi sử dụng hoặc phân phối lại mã nguồn.
