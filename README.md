@@ -151,7 +151,7 @@ php artisan test
 
 ## Ảnh minh họa
 
-Repository hiện chưa có ảnh chụp màn hình hoặc giao diện demo được theo dõi trong mã nguồn. Vì đây là backend API, bạn có thể thêm ảnh từ công cụ kiểm thử (ví dụ Postman/Insomnia), GraphQL IDE hoặc ứng dụng client vào `docs/images/`, rồi nhúng vào README như sau:
+Repository hiện chưa có ảnh chụp màn hình hoặc giao diện demo được theo dõi trong mã nguồn. Vì đây l�� backend API, bạn có thể thêm ảnh từ công cụ kiểm thử (ví dụ Postman/Insomnia), GraphQL IDE hoặc ứng dụng client vào `docs/images/`, rồi nhúng vào README như sau:
 
 ```markdown
 ![Ví dụ kiểm thử API Car Rental](docs/images/api-carrental.png)
@@ -193,6 +193,4 @@ Pull request sẽ được xem xét trước khi hợp nhất. Có thể đề n
 
 ## Giấy phép
 
-Hiện repository **chưa có tệp `LICENSE`**, vì vậy chưa có giấy phép mã nguồn mở nào được công bố cho toàn bộ dự án. Không nên mặc định rằng mã nguồn được phép sử dụng, chỉnh sửa hoặc phân phối lại theo một giấy phép cụ thể.
-
-Nếu bạn là chủ sở hữu dự án và muốn cấp quyền sử dụng mã nguồn, hãy chọn giấy phép phù hợp, thêm tệp `LICENSE` ở thư mục gốc và cập nhật mục này. Nếu chưa có sự cho phép rõ ràng, vui lòng liên hệ chủ sở hữu repository trước khi sử dụng hoặc phân phối lại mã nguồn.
+Dự án này được cấp phép theo **Apache License 2.0**. Bạn có thể xem toàn văn giấy phép trong tệp [`LICENSE`](LICENSE).
