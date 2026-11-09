@@ -1,66 +1,178 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# API Car Rental
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+API backend cho dự án quản lý thuê xe, xây dựng trên **Laravel 10**. Repository hiện cung cấp API quản lý người dùng qua REST và GraphQL, cùng các mutation phục vụ đăng ký, đăng nhập và quy trình đặt lại mật khẩu.
 
-## About Laravel
+> **Lưu ý về phạm vi hiện tại:** tên repository là `apicarrental`, nhưng các route và GraphQL schema hiện có chủ yếu thể hiện chức năng người dùng/xác thực. Hãy bổ sung mô tả và endpoint xe/đặt thuê sau khi các chức năng đó được triển khai hoặc xác nhận trong mã nguồn.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Công nghệ
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- PHP **8.1+**
+- Laravel **10**
+- MySQL hoặc MariaDB
+- GraphQL với [Lighthouse](https://lighthouse-php.com/)
+- Laravel Sanctum và JWT Auth (các package được khai báo trong Composer)
+- Vite, npm và Axios
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Chức năng hiện có
 
-## Learning Laravel
+- **REST API người dùng:** tạo, xem danh sách, xem chi tiết, cập nhật và xóa người dùng.
+- **GraphQL truy vấn người dùng:** truy vấn danh sách và thông tin người dùng theo ID.
+- **GraphQL xác thực:** đăng ký, đăng nhập, đăng xuất và làm mới `auth_key`.
+- **Quản lý mật khẩu:** yêu cầu mã đặt lại, đặt lại và cập nhật mật khẩu.
+- Xác thực dữ liệu đầu vào và băm mật khẩu khi tạo tài khoản.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Cài đặt và chạy cục bộ
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Yêu cầu
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Cài đặt PHP 8.1 trở lên cùng các extension Laravel cần dùng, Composer, Node.js/npm và MySQL hoặc MariaDB. Cần bật PHP PDO driver phù hợp với cơ sở dữ liệu (ví dụ `pdo_mysql`).
 
-## Laravel Sponsors
+### 1. Tải mã nguồn và cài dependencies
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+git clone https://github.com/sangnguyen78/apicarrental.git
+cd apicarrental
 
-### Premium Partners
+composer install
+npm install
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### 2. Cấu hình môi trường
 
-## Contributing
+Tạo tệp `.env` ở thư mục gốc. Repository hiện không có `.env.example`, vì vậy có thể bắt đầu với cấu hình tối thiểu sau và điều chỉnh thông tin kết nối cho môi trường của bạn:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```dotenv
+APP_NAME="API Car Rental"
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://127.0.0.1:8000
 
-## Code of Conduct
+LOG_CHANNEL=stack
+LOG_LEVEL=debug
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=carrental
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-## Security Vulnerabilities
+Tạo database `carrental` trước, sau đó tạo application key:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+php artisan key:generate
+```
 
-## License
+> Không commit `.env` hoặc thông tin bí mật lên GitHub. Trên môi trường production, đặt `APP_DEBUG=false`.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 3. Khởi tạo cơ sở dữ liệu
+
+Chọn **một** cách phù hợp với database của bạn:
+
+- Chạy migration Laravel:
+
+  ```bash
+  php artisan migrate
+  ```
+
+- Hoặc kiểm tra và import SQL có sẵn tại [`database/queryDB.sql`](database/queryDB.sql) vào database `carrental` bằng MySQL client. Hãy sao lưu database trước khi import; không chạy cả migration và SQL dump một cách máy móc nếu chúng tạo trùng bảng.
+
+### 4. Khởi chạy ứng dụng
+
+Mở terminal thứ nhất để chạy Laravel:
+
+```bash
+php artisan serve
+```
+
+Mở terminal thứ hai nếu cần Vite trong quá trình phát triển frontend/assets:
+
+```bash
+npm run dev
+```
+
+Laravel mặc định chạy tại <http://127.0.0.1:8000>. Dừng Vite bằng `Ctrl+C` khi không cần nữa.
+
+## API
+
+### REST
+
+Các route REST được khai báo bằng `Route::apiResource('users', ...)` và có prefix `/api` theo cấu hình Laravel mặc định:
+
+| Phương thức | Endpoint | Mô tả |
+|---|---|---|
+| `GET` | `/api/users` | Lấy danh sách người dùng |
+| `GET` | `/api/users/{id}` | Lấy người dùng theo ID |
+| `POST` | `/api/users` | Tạo người dùng |
+| `PUT/PATCH` | `/api/users/{id}` | Cập nhật người dùng |
+| `DELETE` | `/api/users/{id}` | Xóa người dùng |
+
+Ví dụ tạo người dùng:
+
+```bash
+curl -X POST http://127.0.0.1:8000/api/users \
+  -H 'Accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{"name":"Nguyen Van A","email":"a@example.com","password":"change-me-123"}'
+```
+
+### GraphQL
+
+Schema được định nghĩa tại [`graphql/schema.graphql`](graphql/schema.graphql). Với cấu hình Lighthouse mặc định, endpoint GraphQL là `/graphql`:
+
+```graphql
+query {
+  users {
+    id
+    name
+    email
+  }
+}
+```
+
+Ví dụ gửi truy vấn bằng `curl`:
+
+```bash
+curl -X POST http://127.0.0.1:8000/graphql \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -d '{"query":"{ users { id name email } }"}'
+```
+
+## Kiểm thử
+
+Chạy bộ kiểm thử Laravel bằng lệnh:
+
+```bash
+php artisan test
+```
+
+## Ảnh minh họa
+
+Repository hiện chưa có ảnh chụp màn hình hoặc giao diện demo được theo dõi trong mã nguồn. Vì đây là backend API, bạn có thể thêm ảnh từ công cụ kiểm thử (ví dụ Postman/Insomnia), GraphQL IDE hoặc ứng dụng client vào `docs/images/`, rồi nhúng vào README như sau:
+
+```markdown
+![Ví dụ kiểm thử API Car Rental](docs/images/api-carrental.png)
+```
+
+Không nên dùng ảnh placeholder như ảnh chụp thật; hãy thêm ảnh sau khi đã chụp từ phiên bản đang chạy.
+
+## Cấu trúc liên quan
+
+```text
+app/Http/Controllers/   # REST controllers
+app/GraphQL/            # GraphQL resolvers và mutations
+graphql/schema.graphql  # GraphQL schema
+routes/api.php          # REST API routes
+database/               # Migrations và SQL scripts
+```
+
+## Đóng góp
+
+Nếu muốn đóng góp, hãy tạo branch riêng, mô tả thay đổi rõ ràng và mở pull request để xem xét.
+
+## Giấy phép
+
+Chưa xác định giấy phép riêng cho ứng dụng trong repository. Hãy bổ sung tệp `LICENSE` nếu muốn công bố điều khoản sử dụng.
